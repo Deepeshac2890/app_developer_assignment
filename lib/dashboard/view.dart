@@ -98,8 +98,6 @@ class _DashboardPageState extends State<DashboardPage> {
             dashboardBloc.add(GetNextPageEvent(refreshController));
           },
           child: ListView(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            // crossAxisAlignment: CrossAxisAlignment.stretch,
             shrinkWrap: true,
             physics: ClampingScrollPhysics(),
             children: [
@@ -135,8 +133,6 @@ class _DashboardPageState extends State<DashboardPage> {
                                 BorderRadius.all(Radius.circular(40))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          // crossAxisAlignment: CrossAxisAlignment.baseline,
-                          // textBaseline: TextBaseline.alphabetic,
                           children: [
                             Text(
                               (hd.rating),

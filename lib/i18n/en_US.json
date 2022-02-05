@@ -4,10 +4,23 @@
   "PillCompartment2" : "Tournaments\nwon",
   "PillCompartment3" : "Winning\nPercentage",
   "RecommendationHeader" : "Recommended for you",
-  "UsernameHint" : "Enter Your Email",
+  "UsernameHint" : "Enter Your Username",
   "PasswordHint" : "Enter your password",
-  "InvalidUsername": "Username does not match the criteria",
-  "InvalidPassword" :"Password does not match the criteria",
+  "InvalidUsername": "Username length should be a min of 3 and max of 11 character",
+  "InvalidPassword" :"Password length should be a min of 3 and max of 11 character",
   "InvalidPasswordSnackBar" : "The password is invalid or the user does not have a password",
-  "Login" : "Login"
+  "Login" : "Login",
+  "Register" : "Register",
+  "InvalidFullName" : "Full name length must be a minimum of 3 characters",
+  "InvalidEmail" : "Email Id provided is incorrect min 3 character in form *@*",
+  "EmailIDHint" : "Enter Your Email",
+  "FullNameHint" : "Enter Your Full Name",
+  "UserNameDuplicateError" : "Username already exists",
+  "RegUnSuccessful" : "Registration was unsuccessful",
+  "RegSuccessful" : "Registered Successfully",
+  "SignUp" : "Sign Up",
+  "LoginError" : "Something bad Happened",
+  "RegistrationError1" : "Duplicate Email Id",
+  "RegistrationError2" : "Registration Failed"
+
 }

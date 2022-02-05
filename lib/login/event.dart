@@ -5,8 +5,8 @@ class InitEvent extends LoginEvent {}
 class PageLoaded extends LoginEvent {}
 
 class LoginUsingMailEvent extends LoginEvent {
-  final String emailID;
+  final String userName;
   final String password;
 
-  LoginUsingMailEvent(this.emailID, this.password);
+  LoginUsingMailEvent(this.userName, this.password);
 }

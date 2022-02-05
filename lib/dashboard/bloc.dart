@@ -14,7 +14,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   List<Tournaments> list = [];
   bool isEndData = false;
   String cursor = "";
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore fs = FirebaseFirestore.instance;
   FirebaseAuth fa = FirebaseAuth.instance;
   late HeaderData hd;
 
@@ -59,26 +59,28 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     var user = await fa.currentUser;
     String? uid = user?.uid;
     print(uid);
-    final CollectionReference _mainCollection =
-        await _firestore.collection('Users');
+    final CollectionReference _mainCollection = await fs.collection('Users');
     var data = await _mainCollection.doc(uid).get();
-    Map<String, dynamic> actualData = await data.data() as Map<String, dynamic>;
-    if (actualData != null) {
-      String name = await actualData['Name'];
-      String rating = await actualData['Rating'];
-      String tp = await actualData['Tp'];
-      String tw = await actualData['Tw'];
-      String imgUrl = await actualData['ProfileImage'];
-      String percentage = await actualData['Percentage'];
-      HeaderData hd = HeaderData(
-          name: name,
-          rating: rating,
-          tp: tp,
-          tw: tw,
-          imageUrl: imgUrl,
-          percentage: percentage);
+    var objData = await data.data();
+    if (objData != null) {
+      Map<String, dynamic> actualData = objData as Map<String, dynamic>;
+      if (actualData != null) {
+        String name = await actualData['Name'];
+        String imgUrl = await actualData['ProfileImage'];
+        String rating = await actualData['Rating'];
+        String tp = await actualData['Tp'];
+        String tw = await actualData['Tw'];
+        String percentage = await actualData['Percentage'];
+        HeaderData hd = HeaderData(
+            name: name,
+            rating: rating,
+            tp: tp,
+            tw: tw,
+            imageUrl: imgUrl,
+            percentage: percentage);
 
-      return hd;
+        return hd;
+      }
     }
     return HeaderData(
         name: 'Not Found',

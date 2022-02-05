@@ -6,8 +6,21 @@
   "RecommendationHeader" : "あなたにおすすめ",
   "UsernameHint" : "メールアドレスを入力",
   "PasswordHint" : "パスワードを入力してください",
-  "InvalidUsername": "ユーザー名が基準に一致しません",
-  "InvalidPassword" :"「パスワードが条件に一致しません」",
+  "InvalidUsername": "ユーザー名の長さは、最小3文字、最大11文字である必要があります",
+  "InvalidPassword" :"パスワードの長さは、最小で3文字、最大で11文字にする必要があります",
   "InvalidPasswordSnackBar" : "パスワードが無効であるか、ユーザーがパスワードを持っていません",
-  "Login" : "ログイン"
+  "Login" : "ログイン",
+  "Register" : "登録",
+  "InvalidFullName" : "フルネームの長さは3文字以上である必要があります",
+  "InvalidEmail" : "提供された電子メールIDは、フォームの最小3文字が正しくありません* @ *",
+  "EmailIDHint" : "メールアドレスを入力",
+  "FullNameHint" : "フルネームを入れて下さい",
+  "UserNameDuplicateError" : "ユーザー名は既に存在します",
+  "RegUnSuccessful" : "登録に失敗しました",
+  "RegSuccessful" : "正常に登録",
+  "SignUp" : "サインアップ",
+  "LoginError" : "何か悪いことが起こった",
+  "RegistrationError1" : "重複するメールID",
+  "RegistrationError2" : "登録に失敗しました"
+
 }

@@ -1,5 +1,6 @@
 import 'package:app_developer_assignment/dashboard/view.dart';
 import 'package:app_developer_assignment/login/state.dart';
+import 'package:app_developer_assignment/registration/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +19,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String emailId = "";
+  String userName = "";
   String password = "";
   var passwordController = TextEditingController();
   var userNameController = TextEditingController();
@@ -95,7 +96,6 @@ class _LoginPageState extends State<LoginPage> {
                   child: TextField(
                     controller: userNameController,
                     textAlign: TextAlign.center,
-                    keyboardType: TextInputType.emailAddress,
                     onChanged: (value) {
                       if (validateText(value)) {
                         isUserNameTextIncorrect = false;
@@ -103,11 +103,12 @@ class _LoginPageState extends State<LoginPage> {
                         isUserNameTextIncorrect = true;
                       }
 
-                      emailId = value;
+                      userName = value;
                       setState(() {
                         isUserNameTextIncorrect = isUserNameTextIncorrect;
                       });
                     },
+                    //TODO : Change the userName and password incorrect text in japanese
                     decoration: kTextFieldDecoration.copyWith(
                       hintText: 'UsernameHint'.i18n(),
                       errorText: isUserNameTextIncorrect
@@ -167,13 +168,32 @@ class _LoginPageState extends State<LoginPage> {
                               passwordController.text.length != 0)
                           ? () async {
                               loginBloc
-                                  .add(LoginUsingMailEvent(emailId, password));
+                                  .add(LoginUsingMailEvent(userName, password));
                             }
                           : null,
                       minWidth: 200.0,
                       height: 42.0,
                       child: Text(
                         "Login".i18n(),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.0),
+                  child: Material(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                    elevation: 5.0,
+                    child: MaterialButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, RegistrationPage.id);
+                      },
+                      minWidth: 200.0,
+                      height: 42.0,
+                      child: Text(
+                        "SignUp".i18n(),
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
