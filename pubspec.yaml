@@ -1,0 +1,40 @@
+name: app_developer_assignment
+description: This is the assignment submission for Bluestacks.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.0-67.0.dev <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_bloc: ^7.0.0
+  localization: ^2.1.0
+  cloud_firestore: ^3.1.7
+  firebase_core: ^1.12.0
+  firebase_auth: ^3.3.6
+  firebase_storage: ^10.2.6
+  shared_preferences: ^2.0.12
+  pull_to_refresh: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - lib/i18n/

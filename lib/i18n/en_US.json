@@ -1,0 +1,13 @@
+{
+  "appBarText" : "FlyingWolf",
+  "PillCompartment1" : "Tournaments \nPlayed",
+  "PillCompartment2" : "Tournaments\nwon",
+  "PillCompartment3" : "Winning\nPercentage",
+  "RecommendationHeader" : "Recommended for you",
+  "UsernameHint" : "Enter Your Email",
+  "PasswordHint" : "Enter your password",
+  "InvalidUsername": "Username does not match the criteria",
+  "InvalidPassword" :"Password does not match the criteria",
+  "InvalidPasswordSnackBar" : "The password is invalid or the user does not have a password",
+  "Login" : "Login"
+}

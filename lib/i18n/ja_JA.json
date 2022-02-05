@@ -1,0 +1,13 @@
+{
+  "appBarText" : "フライングウルフ",
+  "PillCompartment1" : "トーナメント\n再生しました",
+  "PillCompartment2" : "トーナメント\n勝った",
+  "PillCompartment3" : "勝ち\nパーセンテージ",
+  "RecommendationHeader" : "あなたにおすすめ",
+  "UsernameHint" : "メールアドレスを入力",
+  "PasswordHint" : "パスワードを入力してください",
+  "InvalidUsername": "ユーザー名が基準に一致しません",
+  "InvalidPassword" :"「パスワードが条件に一致しません」",
+  "InvalidPasswordSnackBar" : "パスワードが無効であるか、ユーザーがパスワードを持っていません",
+  "Login" : "ログイン"
+}
