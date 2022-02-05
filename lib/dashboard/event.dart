@@ -13,3 +13,5 @@ class GetNextPageEvent extends DashboardEvent {
 class LoadData extends DashboardEvent {
   LoadData();
 }
+
+class LogoutEvent extends DashboardEvent {}

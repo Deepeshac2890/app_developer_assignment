@@ -42,6 +42,7 @@ class _MyAppState extends State<MyApp> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return MaterialApp(
+              debugShowCheckedModeBanner: false,
               supportedLocales: [
                 Locale('en', 'US'),
                 Locale('ja', 'JA'),

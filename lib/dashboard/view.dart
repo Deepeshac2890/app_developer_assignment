@@ -1,9 +1,11 @@
 import 'package:app_developer_assignment/Resources/WidgetConstants.dart';
+import 'package:app_developer_assignment/login/view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:localization/localization.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/HeaderData.dart';
 import '../model/customRecommendationModel.dart';
@@ -39,8 +41,12 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return BlocConsumer<DashboardBloc, DashboardState>(
       bloc: dashboardBloc,
-      listener: (BuildContext context, state) {
-        if (state is LoadData) {}
+      listener: (BuildContext context, state) async {
+        if (state is LogoutState) {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setBool('AlreadyLoggedIn', false);
+          Navigator.of(context).popAndPushNamed(LoginPage.id);
+        }
       },
       builder: (BuildContext context, state) {
         if (state is PageLoadedState) {
@@ -65,10 +71,21 @@ class _DashboardPageState extends State<DashboardPage> {
         backgroundColor: Color(0xfff9f9f9),
         leading: Image.asset('assets/menu.png'),
         title: Center(
-            child: Text(
-          'appBarText'.i18n(),
-          style: TextStyle(color: Colors.black),
-        )),
+          child: Text(
+            'appBarText'.i18n(),
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                dashboardBloc.add(LogoutEvent());
+              },
+              icon: Icon(
+                Icons.logout,
+                color: Colors.black,
+              ))
+        ],
       ),
       body: Container(
         color: Color(0xfff9f9f9),
@@ -115,11 +132,11 @@ class _DashboardPageState extends State<DashboardPage> {
                               color: Colors.blue,
                             ),
                             borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
+                                BorderRadius.all(Radius.circular(40))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.baseline,
-                          textBaseline: TextBaseline.alphabetic,
+                          // crossAxisAlignment: CrossAxisAlignment.baseline,
+                          // textBaseline: TextBaseline.alphabetic,
                           children: [
                             Text(
                               (hd.rating),
@@ -132,6 +149,9 @@ class _DashboardPageState extends State<DashboardPage> {
                               width: 6,
                             ),
                             Text('Elo Rating'),
+                            SizedBox(
+                              width: 20,
+                            )
                           ],
                         ),
                       )
@@ -183,7 +203,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       child: Column(
                         children: [
                           Text(
-                            (hd.tp),
+                            (hd.tw),
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 18),
                           ),
@@ -210,7 +230,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       child: Column(
                         children: [
                           Text(
-                            '26%',
+                            hd.percentage,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 18),
                           ),
@@ -277,12 +297,14 @@ class RecommendationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 5,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(20),
         ),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ClipRRect(
             borderRadius: BorderRadius.only(
@@ -290,6 +312,7 @@ class RecommendationCard extends StatelessWidget {
             child: Image.network(
               imageUrl,
               fit: BoxFit.fill,
+              height: 100,
             ),
           ),
           Container(

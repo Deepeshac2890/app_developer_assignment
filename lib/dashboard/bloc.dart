@@ -34,6 +34,9 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
       event.controller.loadComplete();
       yield PageLoadedState(
           dataNotFound: isEndData, listOfTournaments: list, hd: hd);
+    } else if (event is LogoutEvent) {
+      await fa.signOut();
+      yield LogoutState(isSuccess: true);
     }
   }
 
@@ -55,7 +58,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   Future<HeaderData> getHeaderData() async {
     var user = await fa.currentUser;
     String? uid = user?.uid;
-
+    print(uid);
     final CollectionReference _mainCollection =
         await _firestore.collection('Users');
     var data = await _mainCollection.doc(uid).get();

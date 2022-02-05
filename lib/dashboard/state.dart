@@ -37,3 +37,9 @@ class InitialPageLoadedState extends DashboardState {
 }
 
 class HeaderLoadFailed extends DashboardState {}
+
+class LogoutState extends DashboardState {
+  final bool isSuccess;
+
+  LogoutState({required this.isSuccess});
+}
