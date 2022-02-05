@@ -75,6 +75,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
       if (e
           .toString()
           .contains('The email address is already in use by another account')) {
+        print('aaya tha yaha');
         error = "RegistrationError1".i18n();
       } else {
         error = 'RegistrationError2'.i18n();

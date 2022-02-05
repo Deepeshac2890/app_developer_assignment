@@ -53,7 +53,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
-                  'RegUnSuccessful'.i18n(),
+                  state.error,
                   style: TextStyle(color: Colors.white),
                 ),
               ),

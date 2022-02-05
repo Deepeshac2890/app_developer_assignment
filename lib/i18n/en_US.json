@@ -20,7 +20,7 @@
   "RegSuccessful" : "Registered Successfully",
   "SignUp" : "Sign Up",
   "LoginError" : "Something bad Happened",
-  "RegistrationError1" : "Duplicate Email Id",
+  "RegistrationError1" : "Email Id already exists",
   "RegistrationError2" : "Registration Failed"
 
 }
