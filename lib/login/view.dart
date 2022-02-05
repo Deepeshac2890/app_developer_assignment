@@ -1,6 +1,7 @@
 import 'package:app_developer_assignment/dashboard/view.dart';
 import 'package:app_developer_assignment/login/state.dart';
 import 'package:app_developer_assignment/registration/view.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,10 +29,17 @@ class _LoginPageState extends State<LoginPage> {
   bool isUserNameTextIncorrect = false;
   bool isPasswordTextIncorrect = false;
 
+  final Connectivity connectivity = Connectivity();
+
   @override
   void dispose() {
     loginBloc.close();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -166,8 +174,21 @@ class _LoginPageState extends State<LoginPage> {
                               userNameController.text.length != 0 &&
                               passwordController.text.length != 0)
                           ? () async {
-                              loginBloc
-                                  .add(LoginUsingMailEvent(userName, password));
+                              var result =
+                                  await connectivity.checkConnectivity();
+                              if (result == ConnectivityResult.none) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      "NoInternet".i18n(),
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                );
+                              } else {
+                                loginBloc.add(
+                                    LoginUsingMailEvent(userName, password));
+                              }
                             }
                           : null,
                       minWidth: 200.0,

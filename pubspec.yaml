@@ -30,6 +30,7 @@ dev_dependencies:
   firebase_storage: ^10.2.6
   shared_preferences: ^2.0.12
   pull_to_refresh: ^2.0.0
+  connectivity_plus: ^2.2.0
 
 flutter:
 

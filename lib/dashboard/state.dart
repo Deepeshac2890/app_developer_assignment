@@ -43,3 +43,5 @@ class LogoutState extends DashboardState {
 
   LogoutState({required this.isSuccess});
 }
+
+class NoInternetState extends DashboardState {}

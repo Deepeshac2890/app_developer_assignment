@@ -29,6 +29,11 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   void checkAlreadyLoggedIn() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     isAlreadyLoggedIn = (await prefs.getBool('AlreadyLoggedIn')) ?? false;

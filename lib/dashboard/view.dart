@@ -24,6 +24,7 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   final DashboardBloc dashboardBloc = DashboardBloc();
   final RefreshController refreshController = RefreshController();
+  final RefreshController noInternetRefreshController = RefreshController();
 
   @override
   void initState() {
@@ -32,7 +33,6 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   void dispose() {
-    // This has been done to handle memory leaks
     dashboardBloc.close();
     super.dispose();
   }
@@ -55,6 +55,24 @@ class _DashboardPageState extends State<DashboardPage> {
         } else if (state is InitialPageLoadedState) {
           return buildUI(
               context, state.dataNotFound, state.listOfTournaments, state.hd);
+        } else if (state is NoInternetState) {
+          return Scaffold(
+            body: SmartRefresher(
+              onRefresh: () {
+                dashboardBloc
+                    .add(CheckConnectionAgain(noInternetRefreshController));
+              },
+              controller: noInternetRefreshController,
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: Image.asset(
+                  'assets/noInternet.png',
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+          );
         } else {
           dashboardBloc.add(LoadData());
           return loadingWidget();

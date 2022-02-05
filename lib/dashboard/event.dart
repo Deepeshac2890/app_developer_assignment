@@ -15,3 +15,9 @@ class LoadData extends DashboardEvent {
 }
 
 class LogoutEvent extends DashboardEvent {}
+
+class CheckConnectionAgain extends DashboardEvent {
+  final RefreshController controller;
+
+  CheckConnectionAgain(this.controller);
+}

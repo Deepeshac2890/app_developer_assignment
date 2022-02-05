@@ -1,6 +1,7 @@
 import 'package:app_developer_assignment/Service/recommendationService.dart';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../model/HeaderData.dart';
@@ -11,6 +12,7 @@ import 'state.dart';
 class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   DashboardBloc() : super(DashboardState().init());
 
+  final Connectivity connectivity = Connectivity();
   List<Tournaments> list = [];
   bool isEndData = false;
   String cursor = "";
@@ -20,23 +22,39 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
 
   @override
   Stream<DashboardState> mapEventToState(DashboardEvent event) async* {
-    if (event is InitEvent) {
-      yield await init();
-    } else if (event is LoadData) {
-      isEndData = false;
-      await getData(cursor);
-      hd = await getHeaderData();
-      yield InitialPageLoadedState(
-          hd: hd, dataNotFound: isEndData, listOfTournaments: list);
-    } else if (event is GetNextPageEvent) {
-      isEndData = false;
-      await getData(cursor);
-      event.controller.loadComplete();
-      yield PageLoadedState(
-          dataNotFound: isEndData, listOfTournaments: list, hd: hd);
-    } else if (event is LogoutEvent) {
-      await fa.signOut();
-      yield LogoutState(isSuccess: true);
+    var res = await connectivity.checkConnectivity();
+    if (res == ConnectivityResult.none) {
+      if (event is GetNextPageEvent) {
+        event.controller.loadFailed();
+      } else if (event is CheckConnectionAgain) {
+        event.controller.refreshFailed();
+      }
+      yield NoInternetState();
+    } else {
+      if (event is InitEvent) {
+        yield await init();
+      } else if (event is LoadData) {
+        isEndData = false;
+        await getData(cursor);
+        hd = await getHeaderData();
+        yield InitialPageLoadedState(
+            hd: hd, dataNotFound: isEndData, listOfTournaments: list);
+      } else if (event is GetNextPageEvent) {
+        isEndData = false;
+        await getData(cursor);
+        event.controller.loadComplete();
+        yield PageLoadedState(
+            dataNotFound: isEndData, listOfTournaments: list, hd: hd);
+      } else if (event is LogoutEvent) {
+        await fa.signOut();
+        yield LogoutState(isSuccess: true);
+      } else if (event is CheckConnectionAgain) {
+        isEndData = false;
+        await getData(cursor);
+        hd = await getHeaderData();
+        yield InitialPageLoadedState(
+            hd: hd, dataNotFound: isEndData, listOfTournaments: list);
+      }
     }
   }
 

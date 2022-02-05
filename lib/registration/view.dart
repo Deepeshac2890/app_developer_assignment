@@ -1,5 +1,6 @@
 import 'package:app_developer_assignment/login/view.dart';
 import 'package:app_developer_assignment/registration/state.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,6 +27,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   bool isUserNameIncorrect = false;
   bool isEmailIDIncorrect = false;
   bool isPasswordIncorrect = false;
+  final Connectivity connectivity = Connectivity();
 
   @override
   void dispose() {
@@ -251,8 +253,20 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             password.isNotEmpty &&
                             userName.isNotEmpty)
                         ? () async {
-                            rb.add(RegisterUser(
-                                fName, emailId, userName, password));
+                            var result = await connectivity.checkConnectivity();
+                            if (result == ConnectivityResult.none) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    "NoInternet".i18n(),
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              );
+                            } else {
+                              rb.add(RegisterUser(
+                                  fName, emailId, userName, password));
+                            }
                           }
                         : null,
                     minWidth: 200.0,
