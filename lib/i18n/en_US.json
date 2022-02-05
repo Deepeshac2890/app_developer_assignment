@@ -19,8 +19,10 @@
   "RegUnSuccessful" : "Registration was unsuccessful",
   "RegSuccessful" : "Registered Successfully",
   "SignUp" : "Sign Up",
-  "LoginError" : "Something bad Happened",
+  "LoginError" : "User Not Found",
   "RegistrationError1" : "Email Id already exists",
-  "RegistrationError2" : "Registration Failed"
+  "RegistrationError2" : "Registration Failed",
+  "RegistrationError3" : "Invalid Email Id",
+  "RegistrationError4" : "Weak Password Please make it stronger by adding few combinations of literals"
 
 }

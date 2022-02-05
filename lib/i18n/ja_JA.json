@@ -19,8 +19,10 @@
   "RegUnSuccessful" : "登録に失敗しました",
   "RegSuccessful" : "正常に登録",
   "SignUp" : "サインアップ",
-  "LoginError" : "何か悪いことが起こった",
+  "LoginError" : "ユーザーが見つかりません",
   "RegistrationError1" : "重複するメールID",
-  "RegistrationError2" : "登録に失敗しました"
+  "RegistrationError2" : "登録に失敗しました",
+  "RegistrationError3" : "無効なメールID",
+  "RegistrationError4" : "弱いパスワードリテラルの組み合わせをいくつか追加して、パスワードを強化してください"
 
 }

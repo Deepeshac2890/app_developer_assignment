@@ -75,8 +75,15 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
       if (e
           .toString()
           .contains('The email address is already in use by another account')) {
-        print('aaya tha yaha');
         error = "RegistrationError1".i18n();
+      } else if (e
+          .toString()
+          .contains('The email address is badly formatted')) {
+        error = "RegistrationError3".i18n();
+      } else if (e
+          .toString()
+          .contains('Password should be at least 6 characters')) {
+        error = "RegistrationError4".i18n();
       } else {
         error = 'RegistrationError2'.i18n();
       }

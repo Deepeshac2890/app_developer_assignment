@@ -124,7 +124,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 textAlign: TextAlign.center,
                 keyboardType: TextInputType.name,
                 onChanged: (value) {
-                  if (value.length > 3) {
+                  if (value.length > 2) {
                     isFullNameTextIncorrect = false;
                   } else {
                     isFullNameTextIncorrect = true;
@@ -152,7 +152,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 textAlign: TextAlign.center,
                 keyboardType: TextInputType.emailAddress,
                 onChanged: (value) {
-                  if (value.length > 3 && value.contains('@')) {
+                  if (value.length > 2 && value.contains('@')) {
                     isEmailIDIncorrect = false;
                   } else {
                     isEmailIDIncorrect = true;
@@ -179,7 +179,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               child: TextField(
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  if (value.length > 3 && value.length < 12) {
+                  if (value.length > 2 && value.length < 12) {
                     isUserNameIncorrect = false;
                   } else {
                     isUserNameIncorrect = true;
@@ -208,7 +208,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 obscureText: true,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  if (value.length > 3 && value.length < 12) {
+                  if (value.length > 2 && value.length < 12) {
                     isPasswordIncorrect = false;
                   } else {
                     isPasswordIncorrect = true;

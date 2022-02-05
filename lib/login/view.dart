@@ -108,7 +108,6 @@ class _LoginPageState extends State<LoginPage> {
                         isUserNameTextIncorrect = isUserNameTextIncorrect;
                       });
                     },
-                    //TODO : Change the userName and password incorrect text in japanese
                     decoration: kTextFieldDecoration.copyWith(
                       hintText: 'UsernameHint'.i18n(),
                       errorText: isUserNameTextIncorrect
@@ -208,7 +207,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   bool validateText(String value) {
-    if ((value.length > 3) && (value.length < 12) && value.isNotEmpty) {
+    if ((value.length > 2) && (value.length < 12) && value.isNotEmpty) {
       return true;
     } else if (value.length == 0) {
       return true;
