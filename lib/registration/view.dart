@@ -128,6 +128,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 onChanged: (value) {
                   if (value.length > 2) {
                     isFullNameTextIncorrect = false;
+                  } else if (value.length == 0) {
+                    isFullNameTextIncorrect = false;
                   } else {
                     isFullNameTextIncorrect = true;
                   }
@@ -156,6 +158,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 onChanged: (value) {
                   if (value.length > 2 && value.contains('@')) {
                     isEmailIDIncorrect = false;
+                  } else if (value.length == 0) {
+                    isEmailIDIncorrect = false;
                   } else {
                     isEmailIDIncorrect = true;
                   }
@@ -182,6 +186,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 textAlign: TextAlign.center,
                 onChanged: (value) {
                   if (value.length > 2 && value.length < 12) {
+                    isUserNameIncorrect = false;
+                  } else if (value.length == 0) {
                     isUserNameIncorrect = false;
                   } else {
                     isUserNameIncorrect = true;
@@ -211,6 +217,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 textAlign: TextAlign.center,
                 onChanged: (value) {
                   if (value.length > 2 && value.length < 12) {
+                    isPasswordIncorrect = false;
+                  } else if (value.length == 0) {
                     isPasswordIncorrect = false;
                   } else {
                     isPasswordIncorrect = true;
